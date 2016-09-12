@@ -1,0 +1,24 @@
+{
+  "name": "sphinx.js",
+  "version": "0.0.1",
+  "description": "Encrypt / decrypt the information to / from the image.",
+  "main": "/src/sphinx_es6.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrainlau/sphinx.git"
+  },
+  "keywords": [
+    "sphinx",
+    "encrypt",
+    "decrypt"
+  ],
+  "author": "Jrain Lau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrainlau/sphinx/issues"
+  },
+  "homepage": "https://github.com/jrainlau/sphinx#readme"
+}
