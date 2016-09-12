@@ -10,7 +10,7 @@ npm install sphinx.js
 Use `<script></script>` tags
 
 ```
-<script src="sphinx_es6.js"></script>
+<script src="sphinx.js"></script>
 ```
 
 > `SphinxJS` also supports `AMD`, `CommonJS` and `ES6 Modules`

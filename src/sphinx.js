@@ -28,9 +28,9 @@ class Sphinx {
 	}
 
 	encrypt (str) {
-		str += '******'
+		str += '      '
 		let text = this[encodeUTF8](str)
-		let pixel = Math.ceil((text.length + 2) / 3)
+		let pixel = Math.ceil((text.length) / 3)
 		let size = Math.ceil(Math.sqrt(pixel))
 		let canvas = document.createElement('canvas')
 	  canvas.width = canvas.height = size  
@@ -73,7 +73,7 @@ class Sphinx {
 	        if (!pixels[i]) break
 	        buffer.push(String.fromCharCode(pixels[i]))
 	      }
-	      resolve(encodeURIComponent(buffer.join('')).replace(/(\*+$)/g, '').replace(/(%20)/g, ' '))
+	      resolve(encodeURIComponent(buffer.join('')).replace(/(%20)/g, ' '))
 			}
 		})
 	}
@@ -86,7 +86,7 @@ if (typeof module === 'object' && typeof module.exports === 'object') {
 } else if (typeof define === 'function' && define.amd) {
   // AMD support
   define(function () {
-      return Sphinx
+    return Sphinx
   })
 
 } else if (typeof window === 'object') {
