@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>SphinxJS | Encrypt / decrypt the information to / from the image.</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/sweetalert.css">
 </head>
 <body>
   <div class="title">
@@ -12,32 +13,36 @@
     <h3 class="title__item--h2">Encrypt / decrypt the information to / from the image.</h3>
   </div>
   <div class="playground playground--encrypt">
-    <textarea name="" class="playground__input" cols="30" rows="10"></textarea>
+    <textarea class="playground__input" cols="30" rows="10" placeholder='Type a string here and click "Encrypt" button, or type the base64 code here you got before and click "Decrypt" button.' autofocus></textarea>
     <img class="playground__img" src="" alt="Encrypt Picture">
   </div>
   <div class="ops">
-    <span class="ops__des">base64: </span><input type="text" class="ops__input">
+    <span class="ops__des">Result: </span><input type="text" readonly class="ops__output">
     <button class="ops__btn ops__btn--encrypt">Encrypt</button>
     <button class="ops__btn ops__btn--decrypt">Decrypt</button>
   </div>
 
-  <script src="./js/sphinx_es5.js"></script>
-  <script src="./js/sphinx_es6.js"></script>
+  <script src="./js/sphinx.js"></script>
+  <script src="./js/sweetalert.min.js"></script>
   <script>
+    swal('Mind that SphinxJS uses es2015 Promise, which means it requires the supports of your browser.')
+    var input = document.querySelector('.playground__input'),
+        output = document.querySelector('.ops__output')
+
     document.querySelector('.ops__btn--encrypt').onclick = function () {
-      if (document.querySelector('.playground__input').value) {
+      if (input.value) {
         var info = document.querySelector('.playground__input').value
         var base64Code = new Sphinx().encrypt(info)
         document.querySelector('.playground__img').src = base64Code
-        document.querySelector('.ops__input').value = base64Code
+        output.value = base64Code
       }
     }
 
     document.querySelector('.ops__btn--decrypt').onclick = function () {
-      if (document.querySelector('.ops__input').value) {
-        var url = document.querySelector('.ops__input').value
+      if (input.value) {
+        var url = input.value
         new Sphinx().decrypt(url).then(function (data) {
-          document.querySelector('.playground__input').value = data
+          output.value = data
         })
       }
     }

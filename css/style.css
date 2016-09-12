@@ -15,11 +15,16 @@
   background: #aaa;
 }
 
+*::-moz-placeholder { color: #ccc; }
+*::-webkit-input-placeholder { color:#ccc; }
+*:-ms-input-placeholder { color:#ccc; }
+
 html,
 body {
 	font-family: Microsoft Yahei, "PingHei", "Helvetica Neue", "Helvetica", "STHeitiSC-Light", "Arial", sans-serif;
 	height: 100%;
-	background-color: #FFAB40;
+	background-color: #FF6E40;
+	color: #fff;
 }
 
 .title {
@@ -31,7 +36,8 @@ body {
 	font-weight: normal;
 }
 .title .title__item--h1 {
-	font-size: 48px;
+	font-size: 64px;
+	text-shadow: 2px 1px 10px;
 }
 
 .playground {
@@ -45,28 +51,38 @@ body {
 	height: 200px;
 	resize: none;
 	outline: none;
-	background-color: #FFD180;
+	background-color: transparent;
+	border: 2px solid #fff;
+	font-family: inherit;
+	color: inherit;
 }
 .playground .playground__img {
+	box-sizing: border-box;
 	width: 400px;
 	height: 200px;
+	line-height: 200px;
+	border: 1px solid #fff;
+	vertical-align: top;
 }
 
 .ops {
+	margin: 10px;
 	text-align: center;
 }
-.ops .ops__input {
+.ops .ops__output {
 	width: 600px;
+	padding: 5px 10px;
 	outline: none;
-	background-color: #FFD180;
-	border: 1px solid #ccc;
+	background-color: transparent;
+	border: 2px solid #fff;
+	color: inherit;
 }
 .ops .ops__btn {
 	display: block;
 	margin: 20px auto;
 	padding: 20px;
 	outline: none;
-	border: 2px solid #ddd;
+	border: 2px solid #fff;
 	background-color: transparent;
 	color: #fff;
 }
