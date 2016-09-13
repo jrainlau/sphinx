@@ -1,8 +1,8 @@
 {
   "name": "sphinx.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Encrypt / decrypt the information to / from the image.",
-  "main": "/src/sphinx_es6.js",
+  "main": "/src/sphinx.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
