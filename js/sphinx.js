@@ -4,6 +4,7 @@
  * Version: 0.0.1
  */
 ;(() => {
+	
 const encodeUTF8 = Symbol('encodeUTF8')
 /**
  * Construct a new Sphinx instance by passing the configuration object
@@ -28,25 +29,26 @@ class Sphinx {
 	}
 
 	encrypt (str) {
-		str += '******'
+		str += '      '
 		let text = this[encodeUTF8](str)
-		let pixel = Math.ceil((text.length + 2) / 3)
-		let size = Math.ceil(Math.sqrt(pixel))
+		let pixelNum = Math.ceil((text.length) / 3) // One pixel could store 3 bytes by its RGB
 		let canvas = document.createElement('canvas')
-	  canvas.width = canvas.height = size  
-	  let context = canvas.getContext("2d"),  
-      	imageData = context.getImageData(0, 0, canvas.width, canvas.height),  
-      	pixels = imageData.data
-	  for(let i = 0, j = 0, l = pixels.length; i < l; i++){  
+	  canvas.width = canvas.height = Math.ceil(Math.sqrt(pixelNum))
+
+	  let ctx = canvas.getContext('2d'),
+	  		imgData = ctx.createImageData(canvas.width, canvas.height)
+
+	  for(let i = 0, j = 0, l = imgData.data.length; i < l; i++){
       if (i % 4 == 3) {
-          pixels[i] = 255
-          continue
+        imgData.data[i] = 255
+        continue
       }  
       let code = text.charCodeAt(j++)
       if (isNaN(code)) break
-      pixels[i] = code
-	  }  
-	  context.putImageData(imageData, 0, 0)
+      imgData.data[i] = code
+	  } 
+
+	  ctx.putImageData(imgData, 0, 0)
 	  return canvas.toDataURL(`image/${this.config.img}`)
 	}
 
@@ -62,18 +64,17 @@ class Sphinx {
 				canvas.width = img.width
 	      canvas.height = img.height
 
-	      let context = canvas.getContext("2d")
-	      context.drawImage(img, 0, 0)
-	      let imageData = context.getImageData(0, 0, canvas.width, canvas.height),  
-	          pixels = imageData.data
+	      let ctx = canvas.getContext("2d")
+	      ctx.drawImage(img, 0, 0)
+	      let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
-	      let buffer = []
-	      for (let i = 0, l = pixels.length + 2; i < l; i++) {  
+	      let decodeArr = []
+	      for (let i = 0, l = imgData.data.length; i < l; i++) {  
 	        if (i % 4 == 3) continue
-	        if (!pixels[i]) break
-	        buffer.push(String.fromCharCode(pixels[i]))
+	        if (!imgData.data[i]) break
+	        decodeArr.push(String.fromCharCode(imgData.data[i]))
 	      }
-	      resolve(encodeURIComponent(buffer.join('')).replace(/(\*+$)/g, '').replace(/(%20)/g, ' '))
+	      resolve(decodeURIComponent(decodeArr.join('')))
 			}
 		})
 	}
@@ -85,12 +86,11 @@ if (typeof module === 'object' && typeof module.exports === 'object') {
 
 } else if (typeof define === 'function' && define.amd) {
   // AMD support
-  define(function () {
-      return Sphinx
-  })
+  define(() => Sphinx)
 
 } else if (typeof window === 'object') {
   // Normal way
   window.Sphinx = Sphinx
 }
+
 })()
