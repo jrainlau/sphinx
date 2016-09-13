@@ -1,7 +1,7 @@
 ![SphinxJS Logo](./logo.png)
 
 # SphinxJS
-Encrypt / decrypt the information to / from the image.
+Encrypt / decrypt the information to / from an image.
 
 ## Usage
 Install SphinxJS from npm
@@ -15,7 +15,7 @@ Use `<script></script>` tags
 <script src="sphinx.js"></script>
 ```
 
-> Mind that `SphinxJS` uses ES2015 `Promise` and other amazing features, which means it requires your browser's support.
+> Mind that `SphinxJS` uses ES2015 `Promise` and other amazing features, which means that it requires your browser's support.
 > If not, you might use 'Babel' or something else to build your code.
 
 
