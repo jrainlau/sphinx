@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SphinxJS | Encrypt / decrypt the information to / from the image.</title>
+  <title>SphinxJS | A very light JS library which could encode a string to an image, or decode an image to a string.</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/sweetalert.css">
 </head>
@@ -13,13 +13,13 @@
     <h3 class="title__item--h2">Encrypt / decrypt the information to / from the image.</h3>
   </div>
   <div class="playground playground--encrypt">
-    <textarea class="playground__input" cols="30" rows="10" placeholder='Type a string here and click "Encrypt" button, or type the base64 code here you got before and click "Decrypt" button.' autofocus></textarea>
-    <img class="playground__img" src="" alt="Encrypt Picture">
+    <textarea class="playground__input" cols="30" rows="10" placeholder='Type a string here and click "Encode" button, or type the base64 code here you got before and click "Decode" button.' autofocus></textarea>
+    <img class="playground__img" src="" alt="The Picture">
   </div>
   <div class="ops">
     <span class="ops__des">Result: </span><input type="text" readonly class="ops__output">
-    <button class="ops__btn ops__btn--encrypt">Encrypt</button>
-    <button class="ops__btn ops__btn--decrypt">Decrypt</button>
+    <button class="ops__btn ops__btn--encrypt">Encode</button>
+    <button class="ops__btn ops__btn--decrypt">Decode</button>
   </div>
 
   <script src="./js/sphinx.js"></script>
@@ -33,7 +33,7 @@
     document.querySelector('.ops__btn--encrypt').onclick = function () {
       if (input.value) {
         var info = document.querySelector('.playground__input').value
-        var base64Code = new Sphinx().encrypt(info)
+        var base64Code = new Sphinx().encode(info)
         document.querySelector('.playground__img').src = base64Code
         output.value = base64Code
       }
@@ -42,7 +42,7 @@
     document.querySelector('.ops__btn--decrypt').onclick = function () {
       if (input.value) {
         var url = input.value
-        new Sphinx().decrypt(url).then(function (data) {
+        new Sphinx().decode(url).then(function (data) {
           output.value = data
         })
       }
