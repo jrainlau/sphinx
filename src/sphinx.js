@@ -28,7 +28,7 @@ class Sphinx {
 			})
 	}
 
-	encrypt (str) {
+	encode (str) {
 		str += '      '
 		let text = this[encodeUTF8](str)
 		let pixelNum = Math.ceil((text.length) / 3) // One pixel could store 3 bytes by its RGB
@@ -52,7 +52,7 @@ class Sphinx {
 	  return canvas.toDataURL(`image/${this.config.img}`)
 	}
 
-	decrypt (url) {
+	decode (url) {
 		let img = document.createElement('img')
 		
 		img.crossOrigin = "anonymous"

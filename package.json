@@ -1,7 +1,7 @@
 {
   "name": "sphinx.js",
-  "version": "0.0.4",
-  "description": "Encrypt / decrypt the information to / from the image.",
+  "version": "0.1.0",
+  "description": "A very light JS library which could encode a string to an image, or decode an image to a string.",
   "main": "/src/sphinx.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,8 @@
   },
   "keywords": [
     "sphinx",
-    "encrypt",
-    "decrypt"
+    "encode",
+    "decode"
   ],
   "author": "Jrain Lau",
   "license": "MIT",
